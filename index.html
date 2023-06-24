@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Spins</title>
+</head>
+
+<body style="background-color: #343434; color: #fff;">
+    <header id="cabecalho">
+        <h1>Você girou: <span>0</span></h1>
+    </header>
+
+    <section id="conteudo">
+        <div id="painel">
+            <header>
+                <h2>Adicionar itens</h2>
+            </header>
+
+            <div class="formulario aberto">
+                <span class="campo"><label for="txtNome">Nome:</label>
+                <input type="text" id="txtNome" name="txtNome"></span>
+                <span class="campo"><label for="numRaridade">Raridade:</label>
+                <span style="display: flex; gap: 2px;"><input type="number" step="0.1" min="0.1"max="100" id="numRaridade" name="numRaridade">%</span>
+                <span id="btnAuto" class="botao pequeno" href="">Auto</span></span>
+            </div>
+            <span id="btnAdicionar" class="botao" href="">Adicionar</span>
+            <p class="mensagem"></p>
+        </div>
+
+        <div id="roleta">
+            <header>
+                <h2>Você conseguiu:</h2>
+            </header>
+
+            <iframe class="frame-roleta" src="./roleta.html"></iframe>
+            <span id="btnGirar" class="botao" href="">Girar</span>
+        </div>
+
+        <div id="probs">
+            <header>
+                <h2>Itens disponíveis</h2>
+            </header>
+            
+            <div class="area-tabela-itens">
+                <table cellpadding="0" class="tabela-itens">
+                    <tr>
+                        <th>Item</th>
+                        <th colspan="2">Raridade</th>
+                        <th><span id="btnExpandir" class="botao icone"><img src="./img/icon_edit.png" style="width: 8px;"></span></th>
+                    </tr>
+                    <tr>
+                        <td>-</td>
+                        <td>- %</td>
+                        <td>
+                            <span class="botao icone excluir closed"><!--img draggable="false" src="./img/icon_trash.png"--></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <script src="./js/script.js"></script>
+</body>
+
+</html>

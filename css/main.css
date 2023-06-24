@@ -1,0 +1,321 @@
+/* Tudo */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Padrão */
+a, a:visited, a:focus, a:active {
+    color: #fff;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+ul li {
+    display: block;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 7px;
+    margin-left:3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #00000020;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #1f1f1f;
+    border-radius: 10px;
+}
+
+body {
+    background-color: #343434;
+    color: #fff;
+    font-family: "Montserrat";
+}
+
+/* Cabeçalho */
+#cabecalho {
+    padding: 10vh;
+}
+
+/* Conteúdo */
+#conteudo {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: flex-start;
+    justify-content: space-around;
+    column-gap: 20px;
+    row-gap: 50px;
+    /*display: grid;
+    grid-template-columns: 0.75fr 1.5fr 0.75fr;
+    gap: calc(30% - 250px);*/
+    padding: 0 2%;
+    margin-top: 30px;
+}
+
+#conteudo h2 {
+    margin-bottom: 20px;
+}
+
+#conteudo > div {
+    width: 50%;
+    min-width: 200px;
+    border: solid 1px #525252;
+    border-radius: 10px;
+    padding: 25px 10px;
+}
+
+#painel {
+    max-width: 300px;
+    min-height: 200px;
+}
+
+#probs {
+    max-width: 300px;
+    min-height: 150px;
+    max-height: 400px;
+}
+
+.botao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #078379;
+    padding: 10px 25px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.5s;
+    user-select: none;
+}
+
+.botao:hover {
+    background-color: #025049;
+}
+
+.botao.pequeno {
+    padding: 2px 5px;
+    font-size: 0.75em;
+    margin: 0;
+}
+
+.botao.icone {
+    border-radius: 100%;
+    padding: 4px;
+    margin: auto;
+    width: 10px;
+    height: 10px;
+}
+
+.botao.excluir {
+    background-color: #cf1f1f;
+    background-image: url("../img/icon_trash.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 13px;
+    margin-top: 0;
+}
+
+.botao.excluir.closed {
+    transform: scale(0);
+}
+
+.botao.excluir:hover {
+    background-color: #720c0c;
+}
+
+.botao.excluir img{
+    width: 14px;
+    height: auto;
+}
+
+#btnExpandir {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.girando {
+    opacity: 0.5;
+}
+
+.formulario {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.formulario .campo {
+    width: 95%;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.campo input {
+    min-width: 40px;
+    width: 100%;
+    height: 20px;
+    border: none;
+    border-radius: 10px;
+    padding: 0 5px;
+    text-align: center;
+}
+
+.campo:last-child input {
+    max-width: 70px;
+}
+
+
+/* Chances */
+.area-tabela-itens {
+    background: #343434;
+    width: 100%;
+    height: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.area-tabela-itens:hover #btnExpandir {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.tabela-itens {
+    width: 100%;
+    border: none;
+    border-spacing: 0;
+}
+
+.tabela-itens th {
+    background: #1d1d1d;
+}
+
+.tabela-itens tr:nth-child(odd) {
+    background: #434343;
+}
+
+.tabela-itens tr {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.35fr;
+    text-align: center;
+}
+
+.tabela-itens tr td {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tabela-itens tr th, .tabela-itens tr td {
+    padding: 4px 0;
+}
+
+.tabela-itens tr th:first-child, .tabela-itens tr td:first-child {
+    border-right: solid 1px #ffffff44;
+}
+
+#roleta, #painel, #probs {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Roleta */
+.frame-roleta {
+    width: 90%;
+    max-width: 400px;
+    height: 40px;
+    border: solid 1px #fff;
+    border-radius: 50px;
+}
+
+/* HTML Roleta */
+html {
+    scroll-behavior: smooth;
+    overflow: hidden;
+}
+
+#lista-itens {
+    display: block;
+    opacity: 0;
+    width: 100%;
+    height: auto;
+}
+
+#lista-itens li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+}
+
+#lista-itens li {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+/* Raridades */
+.r_common {
+    color: #fff;
+}
+
+.r_rare {
+    color: #6ee2ff;
+}
+
+.r_epic {
+    color: #846eff;
+}
+
+.r_legendary {
+    color: #ffd85a;
+}
+
+.r_mythical {
+    color: #ff3b3b;
+}
+
+/* Animações */
+.scroll {
+    animation: 3s forwards ease-in-out 0s anmScroll;
+}
+
+@keyframes anmScroll {
+    0% {
+        margin-top: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    94% {
+        opacity: 1;
+        background: none;
+    }
+    96% {
+        margin-top: -353px;
+        background: #ffffff77;
+        opacity: 1;
+    }
+    100% {
+        margin-top: -360px;
+        background: none;
+        opacity: 1;
+    }
+}
