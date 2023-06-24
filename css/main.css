@@ -62,9 +62,6 @@ body {
     justify-content: space-around;
     column-gap: 20px;
     row-gap: 50px;
-    /*display: grid;
-    grid-template-columns: 0.75fr 1.5fr 0.75fr;
-    gap: calc(30% - 250px);*/
     padding: 0 2%;
     margin-top: 30px;
 }
