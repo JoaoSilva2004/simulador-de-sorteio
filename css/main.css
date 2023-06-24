@@ -46,6 +46,11 @@ body {
     font-family: "Montserrat";
 }
 
+@font-face {
+    font-family: "Montserrat";
+    src: url("../fonts/montserrat.ttf");
+}
+
 /* Cabeçalho */
 #cabecalho {
     padding: 10vh;
