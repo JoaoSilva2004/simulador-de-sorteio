@@ -1,3 +1,6 @@
+/* Imports */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 /* Tudo */
 * {
     margin: 0;
@@ -43,12 +46,7 @@ h1, h2 {
 body {
     background-color: #343434;
     color: #fff;
-    font-family: "Montserrat";
-}
-
-@font-face {
-    font-family: "Montserrat";
-    src: url("../fonts/montserrat.ttf");
+    font-family: "Montserrat", sans-serif;
 }
 
 /* Cabeçalho */
