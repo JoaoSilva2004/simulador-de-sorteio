@@ -48,7 +48,7 @@ h1, h2 {
 
 body {
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     justify-content: space-around;
     height: 100vh;
     max-width: 100vw;
@@ -81,8 +81,8 @@ body {
 }
 
 #conteudo > div {
-    width: 50%;
-    min-width: 200px;
+    width: 30vw;
+    min-width: 230px;
     border: solid 1px #525252;
     border-radius: 10px;
     padding: 25px 10px;
@@ -197,6 +197,7 @@ body {
     height: 300px;
     max-height: 300px;
     overflow-y: auto;
+    padding-right: 5px;
 }
 
 .area-tabela-itens:hover #btnExpandir {
@@ -204,17 +205,17 @@ body {
     transform: scale(1);
 }
 
-.tabela-itens {
+table {
     width: 100%;
     border: none;
     border-spacing: 0;
 }
 
-.tabela-itens th {
+table th {
     background: #1d1d1d;
 }
 
-.tabela-itens tr:nth-child(odd) {
+table tr:nth-child(odd) {
     background: #434343;
 }
 
@@ -225,17 +226,46 @@ body {
     text-align: center;
 }
 
-.tabela-itens tr td {
+table tr td {
     display: flex;
+    flex-flow: row nowrap;
     align-items: center;
     justify-content: center;
 }
 
-.tabela-itens tr th, .tabela-itens tr td {
+table tr th, table tr td {
     padding: 4px 0;
 }
 
 .tabela-itens tr th:first-child, .tabela-itens tr td:first-child {
+    border-right: solid 1px #ffffff44;
+}
+
+/* Histórico */
+div#historico {
+    width: 95vw;
+    max-width: 1000px;
+    height: 150px;
+}
+
+.area-tabela-historico {
+    background: #343434;
+    width: 100%;
+    height: 300px;
+    max-height: 105px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.tabela-historico tr {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: center;
+}
+
+
+.tabela-historico tr th:not(:last-child), .tabela-historico tr td:not(:last-child) {
     border-right: solid 1px #ffffff44;
 }
 
@@ -283,26 +313,32 @@ body {
 html#roleta {
     scroll-behavior: smooth;
     overflow: hidden;
+    text-align: center;
 }
 
-#lista-itens {
+html#roleta body {
+    width: 100%;
+}
+
+html#roleta #lista-itens {
     display: block;
     opacity: 0;
     width: 100%;
     height: auto;
 }
 
-#lista-itens li {
+html#roleta #lista-itens li {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 40px;
-}
-
-#lista-itens li {
     font-size: 1.5em;
     font-weight: bold;
+}
+
+html#roleta #lista-itens li span {
+    width: 100%;
 }
 
 /* Raridades */
@@ -323,7 +359,7 @@ html#roleta {
 }
 
 .r_mythical {
-    color: #ff3b3b;
+    color: #ff5e5e;
 }
 
 /* Animações */
