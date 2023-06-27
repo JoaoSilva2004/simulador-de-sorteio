@@ -50,7 +50,7 @@ body {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-around;
-    height: 100vh;
+    min-height: 95vh;
     max-width: 100vw;
     background-color: #343434;
     color: #fff;
@@ -282,9 +282,10 @@ div#historico {
     flex-flow: row wrap;
     align-items: center;
     justify-content: space-around;
+    justify-self: flex-end;
     gap: 20px;
     width: 100vw;
-    padding: 50px 20px;
+    padding: 30px 20px;
     box-sizing: border-box;
     text-align: center;
 }
@@ -294,6 +295,15 @@ div#historico {
     align-items: center;
     justify-content: center;
     gap: 20px;
+}
+
+.redes-sociais li {
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.redes-sociais li:hover {
+    opacity: 0.5;
 }
 
 .redes-sociais img {
