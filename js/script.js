@@ -73,7 +73,7 @@ function atualizarHistorico() {
         newTr.className = getRarity(historico[item].raridade);
         newTr.innerHTML = `
         <td><span>${historico[item].nome}</span></td>
-        <td><span>${historico[item].raridade}</span></td>
+        <td><span>${historico[item].raridade}%</span></td>
         <td><span>${historico[item].sorteio}</span></td>
         <td><span>${historico[item].data} às ${historico[item].hora}</span></td>`;
         tabelaHistorico.firstElementChild.after(newTr);
