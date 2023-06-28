@@ -1,16 +1,18 @@
 const hdrCabecalho = document.querySelector("header#cabecalho");
+const btnResetGiros = document.querySelector("span#btnResetGiros");
 const btnAuto = document.querySelector("span#btnAuto");
 const btnAdicionar = document.querySelector("span#btnAdicionar");
 const btnGirar = document.querySelector("span#btnGirar");
 const btnExpandir = document.querySelector("span#btnExpandir");
 const btnsExcluir = document.getElementsByClassName("excluir");
+const txtSorteios = hdrCabecalho.querySelector("h1 span");
 let btnActive = false;
 let expandido = false;
-let qtdGiros = 0;
+let sorteios = 0;
 let cor_vermelho = "#f97171";
 
-itens = {
-};
+let itens = {};
+let historico = {};
 
 function mensagemPainel(cor, mensagem) {
     const pMsg = document.querySelector("p.mensagem");
@@ -40,20 +42,15 @@ function percTotal() {
 async function atualizarTabela() {
     const tabelaItens = document.querySelector("table.tabela-itens").children[0];
     
-    //tabelaItens.innerHTML = `<tr><th>Item</th><th>Raridade</th><th><span id="btnExpandir" class="botao icone"><img src="./img/icon_forward.png" style="width: 8px;"></span></th></tr>`;
-    //expandido = false;
-
     while (tabelaItens.childElementCount > 1) {
         tabelaItens.removeChild(tabelaItens.lastElementChild);
     }
 
     for (let item in organizarItens()) {
-        //itens = organizarItens();
         const newTr = document.createElement("tr");
         newTr.id = `item_${item}`;
-    //console.log(organizarItens());
         newTr.className = getRarity(itens[item].raridade);
-        newTr.innerHTML = `<td>${itens[item].nome}</td><td>${itens[item].raridade}%</td><td><span class="botao icone excluir ${expandido ? "" : "closed"}"></span></td>`;
+        newTr.innerHTML = `<td>${itens[item].nome}</td><td>${itens[item].raridade}%</td><td><span class="botao pequeno icone excluir ${expandido ? "" : "closed"}"></span></td>`;
         tabelaItens.appendChild(newTr);
     }
 
@@ -61,12 +58,43 @@ async function atualizarTabela() {
         let btnExcluir = btnsExcluir[i];
         btnExcluir.addEventListener("click", excluirItem);
     }
+}
 
-    /*for (const item in itens) {
-        if (itens[item].nome && itens[item].raridade) {
-            tabelaItens.innerHTML += `<tr class="${getRarity(itens[item].raridade)}"><td>${itens[item].nome}</td><td>${itens[item].raridade}%</td><td><span class="botao icone excluir closed"><img src="./img/icon_trash.png"></span></td></tr>`;
-        }
-    }*/
+function atualizarHistorico() {
+    const tabelaHistorico = document.querySelector("table.tabela-historico > tbody");
+
+    while (tabelaHistorico.childElementCount > 1) {
+        tabelaHistorico.removeChild(tabelaHistorico.lastElementChild);
+    }
+
+    for (let item in historico) {
+        const newTr = document.createElement("tr");
+        newTr.id = `item_${item}`;
+        newTr.className = getRarity(historico[item].raridade);
+        newTr.innerHTML = `
+        <td><span>${historico[item].nome}</span></td>
+        <td><span>${historico[item].raridade}</span></td>
+        <td><span>${historico[item].sorteio}</span></td>
+        <td><span>${historico[item].data} às ${historico[item].hora}</span></td>`;
+        tabelaHistorico.firstElementChild.after(newTr);
+    }
+}
+
+function adicionarHistorico(itemObtido) {
+    const date = new Date();
+    historico[Object.keys(historico).length <= 0 ? 0 : Object.keys(historico).length] = {nome: itens[itemObtido].nome, raridade: itens[itemObtido].raridade, sorteio: sorteios, hora: `${(date.getHours() < 10 ? "0" : "") + date.getHours()}:${(date.getMinutes() < 10 ? "0" : "") + date.getMinutes()}:${(date.getSeconds() < 10 ? "0" : "") + date.getSeconds()}`, data: `${(date.getDay() < 10 ? "0" : "") + date.getDay()}/${(date.getMonth() < 10 ? "0" : "") + date.getMonth()}/${date.getFullYear()}`};
+    atualizarHistorico();
+}
+
+function resetHistorico() {
+    historico = {};
+    atualizarHistorico();
+}
+
+function resetGiros() {
+    sorteios = 0;
+    txtSorteios.innerHTML = 0;
+    resetHistorico();
 }
 
 function autoAdicionar() {
@@ -146,7 +174,7 @@ function sleep(ms) {
 async function girar() {
     const iFrame = document.querySelector("iframe.frame-roleta");
     const listaRoleta = iFrame.contentWindow.document.querySelector("ul#lista-itens");
-    const girou = hdrCabecalho.querySelector("h1 span");
+    let lastResult;
 
 
     if (btnActive == true) {
@@ -165,30 +193,31 @@ async function girar() {
 
     btnActive = true;
 
-    qtdGiros++;
-    girou.innerHTML = qtdGiros;
+    sorteios++;
+    txtSorteios.innerHTML = sorteios;
 
     btnGirar.className += " girando";
     
     mensagemPainel("#ffffff", "");
     listaRoleta.className = "";
     await sleep(100);
-    /*tempInner = listaRoleta.innerHTML;
-    listaRoleta.innerHTML = "";
-    listaRoleta.innerHTML = tempInner;*/
 
     for (let i = 0; i < 10; i++) {
         let result = sortear();
         listaRoleta.children[i].children[0].className = ` ${getRarity(itens[result].raridade)}`;
         listaRoleta.children[i].children[0].innerHTML = itens[result].nome;
+
+        if (i == 9) {
+            lastResult = result;
+        }
     }
 
     listaRoleta.className = "scroll";
-    await sleep(3000);//listaRoleta.className.slice(6);
-    //listaRoleta.children[9].children[0].scrollIntoView({behavior: 'smooth'}, true);
-    
+    await sleep(3000);
+
     btnGirar.className = btnGirar.className.slice(0, -8);
     btnActive = false;
+    adicionarHistorico(lastResult)
 }
 
 function expandir() {
@@ -244,11 +273,10 @@ function excluirItem(param) {
     let idItem = param.target.parentElement.parentElement.id;
 
     delete itens[idItem.slice(5, idItem.length)];
-console.log("Item sendo excluído: nº" + (idItem.slice(5, idItem.length)));
-console.log(itens);
+
     atualizarTabela();
 }
-
+btnResetGiros.addEventListener("click", resetGiros);
 btnAuto.addEventListener("click", autoAdicionar);
 btnAdicionar.addEventListener("click", adicionarItem);
 btnGirar.addEventListener("click", girar);

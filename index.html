@@ -11,7 +11,8 @@
 
 <body style="background-color: #343434; color: #fff;">
     <header id="cabecalho">
-        <h1>Você girou: <span>0</span></h1>
+        <h1>Você sorteou <span>0</span> vezes.</h1>
+        <span id="btnResetGiros" class="botao icone"><img draggable="false" src="./img/icon_reset.png"></span>        
     </header>
 
     <section id="conteudo">
@@ -33,7 +34,7 @@
 
         <div id="roleta">
             <header>
-                <h2>Você conseguiu:</h2>
+                <h2>Você obteve:</h2>
             </header>
 
             <iframe class="frame-roleta" src="./roleta.html"></iframe>
@@ -50,13 +51,13 @@
                     <tr>
                         <th>Item</th>
                         <th colspan="2">Raridade</th>
-                        <th><span id="btnExpandir" class="botao icone"><img src="./img/icon_edit.png" style="width: 8px;"></span></th>
+                        <th><span id="btnExpandir" class="botao pequeno icone"><img src="./img/icon_edit.png" style="width: 8px;"></span></th>
                     </tr>
                     <tr>
                         <td>-</td>
                         <td>- %</td>
                         <td>
-                            <span class="botao icone excluir closed"><!--img draggable="false" src="./img/icon_trash.png"--></span>
+                            <span class="botao pequeno icone excluir closed"><!--img draggable="false" src="./img/icon_trash.png"--></span>
                         </td>
                     </tr>
                 </table>
@@ -71,56 +72,14 @@
                     <tr>
                         <th>Item</th>
                         <th>Raridade</th>
-                        <th>Giro</th>
+                        <th>Sorteio</th>
                         <th>Data</th>
                     </tr>
-                    <tr class="r_mythical">
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>26/06/2023 às 14:27</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>26/06/2023 às 14:27</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>26/06/2023 às 14:27</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>26/06/2023 às 14:27</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>26/06/2023 às 14:27</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>26/06/2023 às 14:27</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>26/06/2023 às 14:27</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>[ ]</span></td>
-                        <td><span>26/06/2023 às 14:27</span></td>
+                    <tr class="r_common">
+                        <td><span>-</span></td>
+                        <td><span>-</span></td>
+                        <td><span>-</span></td>
+                        <td><span>--/--/---- às --:--</span></td>
                     </tr>
                 </table>
             </div>
